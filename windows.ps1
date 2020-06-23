@@ -3,3 +3,11 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://cho
 
 # install groovy
 choco install groovy
+
+dotnet tool install -g dotnet-script
+
+
+# enable Hyper V
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
+choco install kubernetes-helm -y
