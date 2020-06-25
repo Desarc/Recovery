@@ -8,7 +8,10 @@ Install-PackageProvider -Name NuGet -Force
 Install-Module -Name PowerShellGet -Force
 Update-Module -Name PowerShellGet
 
-Copy-Item -Path 'profile.ps1' -Destination 'C:\Windows\System32\WindowsPowerShell\v1.0'
+Copy-Item -Path 'powershell\profile.ps1' -Destination 'C:\Windows\System32\WindowsPowerShell\v1.0'
+Copy-Item -Path 'git\.gitconfig' -Destination 'C:\Users\.gitconfig'
+Copy-Item -Path 'git\.bash_profile' -Destination 'C:\Users\.bash_profile'
+Copy-Item -Path 'git\.bashrc' -Destination 'C:\Users\.bashrc'
 
 # install Microsoft Visual C++ Redistributable for Visual Studio 2015-2019
 choco install vcredist140 --confirm

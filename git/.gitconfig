@@ -1,0 +1,54 @@
+[user]
+	name = Øyvin Richardsen
+	email = ori@dips.no
+[core]
+	autocrlf = false
+	excludesfile = C:\\Users\\ori\\Documents\\gitignore_global.txt
+	editor = code --wait
+[push]
+	default = simple
+[diff]
+    tool = vsdiffmerge
+[difftool]
+    prompt = true
+[difftool "vsdiffmerge"]
+    cmd = \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsDiffMerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
+    keepbackup = false
+    trustexistcode = true
+[merge]
+	tool = vsdiffmerge
+[mergetool]
+    prompt = true
+[mergetool "vsdiffmerge"]
+	cmd = \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsDiffMerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
+    keepbackup = false
+    trustexistcode = true
+[alias]
+    ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    logtree = log --graph --oneline --decorate --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    get = "!sh -c 'git clone https://dips-alm/DefaultCollection/DIPS/_git/$1'" -
+	lol = log --graph --oneline --decorate
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	clean-master = "!sh -c '/c/Users/ori/bin/git-clean-master.sh'"
+	new-feature-branch = "!sh -c '/c/Users/ori/bin/git-new-feature-branch.sh $1'" -
+	nfb = "!sh -c '/c/Users/ori/bin/git-new-feature-branch.sh $1'" -
+    amend = commit --amend --no-edit
+	amend-remote = "!sh -c '/c/Users/ori/bin/git-amend-remote.sh'"
+	fpush = "push --force-with-lease"
+    crebase = "!sh -c '/c/Users/ori/bin/git-rebase-continue.sh'"
+    push-new = "!sh -c '/c/Users/ori/bin/git-push-new.sh'"
+    undo = reset HEAD~1 $1
+    sup = submodule update --remote
+[credential]
+	authority = NTLM
+	interactive = never
+	helper = manager
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[http]
+	sslbackend = schannel

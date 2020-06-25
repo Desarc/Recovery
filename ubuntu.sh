@@ -31,6 +31,9 @@ sudo apt-get install python3 -y
 # dotnet script
 dotnet tool install -g dotnet-script
 
+# ssh key
+ssh-keygen -t rsa -b 4096 -C "ori@dips.no"
+
 # docker
 sudo apt-get install docker -y
 sudo apt-get install docker-compose -y
