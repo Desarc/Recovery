@@ -27,6 +27,7 @@ sdk install groovy
 
 # python3
 sudo apt-get install python3 -y
+sed "$ a alias python=python3" ~/.bashrc --silent
 
 # dotnet script
 dotnet tool install -g dotnet-script

@@ -8,10 +8,11 @@ Install-PackageProvider -Name NuGet -Force
 Install-Module -Name PowerShellGet -Force
 Update-Module -Name PowerShellGet
 
+$userDir = 'C:\Users\ori'
 Copy-Item -Path 'powershell\profile.ps1' -Destination 'C:\Windows\System32\WindowsPowerShell\v1.0'
-Copy-Item -Path 'git\.gitconfig' -Destination 'C:\Users\.gitconfig'
-Copy-Item -Path 'git\.bash_profile' -Destination 'C:\Users\.bash_profile'
-Copy-Item -Path 'git\.bashrc' -Destination 'C:\Users\.bashrc'
+Copy-Item -Path 'git\.gitconfig' -Destination (Join-Path $userDir '.gitconfig')
+Copy-Item -Path 'git\.bash_profile' -Destination (Join-Path $userDir '.bash_profile')
+Copy-Item -Path 'git\.bashrc' -Destination (Join-Path $userDir '.bashrc')
 
 # install Microsoft Visual C++ Redistributable for Visual Studio 2015-2019
 choco install vcredist140 --confirm
@@ -28,14 +29,16 @@ choco install vscode --confirm
 # install Visual Studio
 choco install visualstudio2019enterprise --confirm
 
+# install 7-Zip
+choco install 7zip --confirm
+
 # install groovy
 choco install groovy --confirm
 
 # install .NET Core SDK
 choco install dotnetcore-sdk --confirm
 
-# install dotnet core
-
+# install dotnet script
 dotnet tool install -g dotnet-script
 
 # enable WSL2 and install Ubuntu
@@ -47,7 +50,8 @@ msiexec.exe /i 'c:\temp\wsl_update_x64.msi' /quiet /norestart
 
 wsl --set-default-version 2
 
-choco install wsl-ubuntu-1804 --confirm
+# does not set up everything correctly, install manually from Windows Store
+# choco install wsl-ubuntu-1804 --confirm
 
 # enable Hyper V
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
@@ -69,6 +73,7 @@ choco install slack --confirm
 # choco install microsoft-windows-terminal --confirm
 # WinGet is only for insiders as of 2020-06-24
 # winget install --id=Microsoft.WindowsTerminal -e
+# install manually from Windows Store
 
 # Spotify -- this might require some manual intervention
 # https://chocolatey.org/packages/spotify
@@ -80,14 +85,15 @@ choco install postman --confirm
 # dotpeek
 choco install dotpeek --confirm
 
+# Paint .NET
+choco install paint.net --confirm
+
 if (-not (Test-Path 'C:\code'))
 {
     New-Item 'C:\code' -ItemType 'Directory'
 }
 
 Set-Location 'C:\code'
-
-git config --global http.sslbackend schannel
 
 git clone https://dips-alm/DefaultCollection/DIPS/_git/Buildsystem
 git clone https://dips-alm/DefaultCollection/DIPS/_git/OctopusDeploy-Templates
