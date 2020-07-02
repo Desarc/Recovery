@@ -45,3 +45,5 @@ sed "$ a export DOCKER_TLS_VERIFY=" ~/.bashrc --silent
 sed "$ a export DOCKER_HOST=tcp://localhost:2375" ~/.bashrc --silent
 
 source ~/.bashrc
+
+cat ~/.ssh/id_rsa.pub

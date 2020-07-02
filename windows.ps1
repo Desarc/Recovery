@@ -14,6 +14,9 @@ Copy-Item -Path 'git\.gitconfig' -Destination (Join-Path $userDir '.gitconfig')
 Copy-Item -Path 'git\.bash_profile' -Destination (Join-Path $userDir '.bash_profile')
 Copy-Item -Path 'git\.bashrc' -Destination (Join-Path $userDir '.bashrc')
 
+$userBinDir = Join-Path $userDir 'bin'
+Get-ChildItem -Path 'git\bin' -Filter '*.sh' | Copy-Item -Destination "$userBinDir\"
+
 # install Microsoft Visual C++ Redistributable for Visual Studio 2015-2019
 choco install vcredist140 --confirm
 
@@ -42,8 +45,8 @@ choco install dotnetcore-sdk --confirm
 dotnet tool install -g dotnet-script
 
 # enable WSL2 and install Ubuntu
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -All -NoRestart
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -All -NoRestart
 
 Invoke-WebRequest https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile 'C:\temp\wsl_update_x64.msi'
 msiexec.exe /i 'c:\temp\wsl_update_x64.msi' /quiet /norestart
@@ -54,7 +57,7 @@ wsl --set-default-version 2
 # choco install wsl-ubuntu-1804 --confirm
 
 # enable Hyper V
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 
 # install docker
 choco install docker-desktop --confirm
