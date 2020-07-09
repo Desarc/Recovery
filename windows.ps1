@@ -39,19 +39,26 @@ choco install 7zip --confirm
 choco install groovy --confirm
 
 # install .NET Core SDK
-choco install dotnetcore-sdk --confirm
+choco install dotnetcore-sdk --version=2.2.402 --confirm --allow-multiple
+choco install dotnetcore-sdk --version=3.1.301 --confirm --allow-multiple
+choco install dotnetcore-windowshosting --version=2.2.8 --confirm --allow-multiple
+choco install dotnetcore-windowshosting --version=3.1.5 --confirm --allow-multiple
 
 # install dotnet script
-dotnet tool install -g dotnet-script
+dotnet tool install --global dotnet-script
 
-# enable WSL2 and install Ubuntu
+# install dotnet-dev-certs
+dotnet tool install --global dotnet-dev-certs
+
+# enable WSL
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -All -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -All -NoRestart
 
-Invoke-WebRequest https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile 'C:\temp\wsl_update_x64.msi'
-msiexec.exe /i 'c:\temp\wsl_update_x64.msi' /quiet /norestart
-
-wsl --set-default-version 2
+# enable WSL2
+# WSL 2 does not work with Cisco AnyConnect VPN
+# Invoke-WebRequest https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile 'C:\temp\wsl_update_x64.msi'
+# msiexec.exe /i 'c:\temp\wsl_update_x64.msi' /quiet /norestart
+# wsl --set-default-version 2
 
 # does not set up everything correctly, install manually from Windows Store
 # choco install wsl-ubuntu-1804 --confirm
@@ -87,6 +94,9 @@ choco install postman --confirm
 
 # dotpeek
 choco install dotpeek --confirm
+
+# NuGet package explorer
+choco install nugetpackageexplorer --confirm
 
 # Paint .NET
 choco install paint.net --confirm
