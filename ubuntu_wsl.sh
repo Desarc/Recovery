@@ -56,6 +56,21 @@ echo "export DOCKER_HOST=" >> ~/.bashrc
 echo "export DOCKER_TLS_VERIFY=" >> ~/.bashrc
 echo "export DOCKER_HOST=tcp://localhost:2375" >> ~/.bashrc
 
+# kubectl
+sudo apt-get install -y apt-transport-https ca-certificates curl
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+
+# helm
+curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+sudo apt-get install apt-transport-https --yes
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+helm repo add dips https://artifacts.dips.local/artifactory/helm
+
 source ~/.bashrc
 
 cat ~/.ssh/id_rsa.pub
