@@ -32,6 +32,16 @@ sdk install groovy
 sudo apt-get install python3 -y
 echo "alias python=python3" >> ~/.bashrc
 
+# .NET 5
+wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
+sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-5.0
+
 # dotnet script
 dotnet tool install -g dotnet-script
 
@@ -69,6 +79,8 @@ sudo apt-get install apt-transport-https --yes
 echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 sudo apt-get update
 sudo apt-get install helm
+
+helm repo add stable https://charts.helm.sh/stable
 helm repo add dips https://artifacts.dips.local/artifactory/helm
 
 source ~/.bashrc
