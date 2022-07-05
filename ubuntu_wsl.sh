@@ -32,15 +32,15 @@ sdk install groovy
 sudo apt-get install python3 -y
 echo "alias python=python3" >> ~/.bashrc
 
-# .NET 5
-wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+# .NET 6
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 
 sudo apt-get update; \
   sudo apt-get install -y apt-transport-https && \
   sudo apt-get update && \
-  sudo apt-get install -y dotnet-sdk-5.0
+  sudo apt-get install -y dotnet-sdk-6.0
 
 # dotnet script
 dotnet tool install -g dotnet-script
