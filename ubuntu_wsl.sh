@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "export cd /c/code" >> ~/.bashrc
+echo "cd /c/code" >> ~/.bashrc
 
 # mount drives at /c instead of /mnt/c (fix for docker on WSL)
 sudo cp wsl/wsl.conf /etc/wsl.conf
@@ -12,24 +12,25 @@ sudo apt-get upgrade -y
 sudo apt-get install zip -y
 sudo apt-get install unzip -y
 
-# Java
-sudo apt-get install default-jdk -y
-sudo apt-get install maven -y
+# # Java
+# sudo apt-get install default-jdk -y
+# sudo apt-get install maven -y
 
-# change path if necessary
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-echo "Setting JAVA_HOME to $JAVA_HOME"
-echo "export JAVA_HOME=$JAVA_HOME" >> ~/.bashrc
-export JAVA_HOME=$JAVA_HOME
+# # change path if necessary
+# JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+# echo "Setting JAVA_HOME to $JAVA_HOME"
+# echo "export JAVA_HOME=$JAVA_HOME" >> ~/.bashrc
+# export JAVA_HOME=$JAVA_HOME
 
-# install SDKMAN!
-curl -s "https://get.sdkman.io" |
-source ~/.sdkman/bin/sdkman-init.sh
+# # install SDKMAN!
+# curl -s "https://get.sdkman.io" |
+# source ~/.sdkman/bin/sdkman-init.sh
 
-sdk install groovy
+# sdk install groovy
 
-# python3
+# # python3
 sudo apt-get install python3 -y
+sudo apt-get install python3-pip -y
 echo "alias python=python3" >> ~/.bashrc
 
 # .NET 6
@@ -49,7 +50,21 @@ dotnet tool install -g dotnet-script
 ssh-keygen -t rsa -b 4096 -C "ori@dips.no"
 
 # docker
-sudo apt-get install docker -y
+# remove old versions
+sudo apt-get remove docker docker-engine docker.io containerd runc -y
+
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg lsb-release -y
+
+sudo mkdir -p /etc/apt/keyrings
+wget https://download.docker.com/linux/ubuntu/gpg -O /etc/apt/keyrings/docker.gpg
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
 # required for docker login
 sudo apt-get install gnupg2 pass -y
@@ -57,14 +72,12 @@ sudo apt-get install gnupg2 pass -y
 # docker-compose
 # apt-get installs old version
 # sudo apt-get install docker-compose -y
-sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+pip3 install docker-compose -y
 
-# set vars for docker
-echo "export DOCKER_HOST=" >> ~/.bashrc
-echo "export DOCKER_TLS_VERIFY=" >> ~/.bashrc
-echo "export DOCKER_HOST=tcp://localhost:2375" >> ~/.bashrc
+# minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+sudo dpkg -i minikube_latest_amd64.deb
+# minikube start
 
 # kubectl
 sudo apt-get install -y apt-transport-https ca-certificates curl
