@@ -19,7 +19,7 @@ function update_title()
 #   echo -en '\033k'$windowTitle'\033\\' # if the above doesn't work
 }
 
-function parse_git_branch() 
+function parse_git_branch()
 {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }

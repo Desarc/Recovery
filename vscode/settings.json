@@ -1,0 +1,30 @@
+{
+    "workbench.colorTheme": "Visual Studio 2019 Dark",
+    "files.trimTrailingWhitespace": true,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.quickSuggestionsDelay": 50,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.wordWrap": "on",
+    "files.associations": {
+        "*.inventory": "ini"
+    },
+    "editor.fontLigatures": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "yaml.customTags": [
+        "!encrypted/pkcs1-oaep scalar",
+        "!vault scalar"
+    ],
+    "editor.bracketPairColorization.enabled": true,
+    "files.trimFinalNewlines": true,
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    "powershell.codeFormatting.openBraceOnSameLine": false,
+    "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
+    "powershell.codeFormatting.useConstantStrings": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+    "powershell.codeFormatting.whitespaceBetweenParameters": true,
+    "editor.wrappingIndent": "indent"
+}

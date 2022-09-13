@@ -22,12 +22,6 @@ sudo apt-get install unzip -y
 # echo "export JAVA_HOME=$JAVA_HOME" >> ~/.bashrc
 # export JAVA_HOME=$JAVA_HOME
 
-# # install SDKMAN!
-# curl -s "https://get.sdkman.io" |
-# source ~/.sdkman/bin/sdkman-init.sh
-
-# sdk install groovy
-
 # # python3
 sudo apt-get install python3 -y
 sudo apt-get install python3-pip -y
