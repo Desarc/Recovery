@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Visual Studio 2019 Dark",
+    "workbench.colorTheme": "Default Dark+",
     "files.trimTrailingWhitespace": true,
     "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
@@ -11,13 +11,6 @@
         "*.inventory": "ini"
     },
     "editor.fontLigatures": true,
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
-    },
-    "yaml.customTags": [
-        "!encrypted/pkcs1-oaep scalar",
-        "!vault scalar"
-    ],
     "editor.bracketPairColorization.enabled": true,
     "files.trimFinalNewlines": true,
     "powershell.codeFormatting.autoCorrectAliases": true,
