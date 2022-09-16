@@ -6,7 +6,8 @@ echo "cd /c/code" >> ~/.bashrc
 sudo cp wsl/wsl.conf /etc/wsl.conf
 sudo chmod 644 /etc/wsl.conf
 
-sudo rm /etc/resolv.conf
+sudo cp wsl/resolv.conf /etc/resolv.conf
+sudo chmod 644 /etc/resolv.conf
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
