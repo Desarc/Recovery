@@ -1,9 +1,11 @@
 #################################################################################################
-# Checkout main, pull from main, prune main to remove branches that are merged with main
+# Checkout main, pull from main, checkout current branch, rebase on main
 ################################################################################################
+
+currentBranch=$(git rev-parse --abbrev-ref HEAD)
 
 git stash
 git checkout main
-git pull
-git remote prune origin
-git branch --merged main --no-color | grep -v '^[ *]*main$' | xargs -rn 1 git branch -d
+git pull origin main
+git checkout $currentBranch
+git rebase main
